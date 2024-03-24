@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="section-title text-center">
+        <h2>{{ self.title }}</h2>
+        <p>{{ self.subtitle }}</p>
+    </div>
+
+    <div class="row">
+        {% for card in self.cards %}
+        <div class="col-lg-4 col-sm-6 {% if forloop.last %}offset-sm-3 offset-lg-0{% endif %}">
+            <div class="choose-card">
+                <i class="{{ card.icon_class }}"></i>
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.content }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

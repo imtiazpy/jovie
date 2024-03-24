@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 LOCAL_APPS = [
     "home",
     "search",
+    "streams",
 ]
 
 THIRD_PARTY_APPS = [

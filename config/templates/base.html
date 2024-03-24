@@ -24,7 +24,19 @@
         {% endif %}
 
         {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/owl_carousel/owl.carousel.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/owl_carousel/owl.theme.default.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/boxicon/boxicon.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/fonts/flaticon/flaticon.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/select/nice-select.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/meanmenu.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/dark.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/config.css' %}">
+
+        <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
@@ -34,9 +46,59 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
+        <!-- Pre-loader Start -->
+		<div class="loader-content">
+            <div class="d-table">
+                <div class="d-table-cell">
+					<div class="sk-circle">
+						<div class="sk-circle1 sk-child"></div>
+						<div class="sk-circle2 sk-child"></div>
+						<div class="sk-circle3 sk-child"></div>
+						<div class="sk-circle4 sk-child"></div>
+						<div class="sk-circle5 sk-child"></div>
+						<div class="sk-circle6 sk-child"></div>
+						<div class="sk-circle7 sk-child"></div>
+						<div class="sk-circle8 sk-child"></div>
+						<div class="sk-circle9 sk-child"></div>
+						<div class="sk-circle10 sk-child"></div>
+						<div class="sk-circle11 sk-child"></div>
+						<div class="sk-circle12 sk-child"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Pre-loader End -->
+
+        <!-- Navbar Area Start -->
+        {% include 'includes/_navbar.html' %}
+        <!-- Navbar Area End -->
+
         {% block content %}{% endblock %}
 
+        <!-- Footer Section Start -->
+        {% include 'includes/_footer.html' %}
+        <div class="copyright-text text-center">
+            <p>© Jovie is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBootstrp</a></p>
+        </div>
+        <!-- Footer Section End -->
+
+        <!-- Back To Top Start -->
+		<div class="top-btn">
+			<i class='bx bx-chevrons-up bx-fade-up'></i>
+		</div>
+		<!-- Back To Top End -->
+
         {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/owl_carousel/owl.carousel.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/select/nice-select.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/magnific/magnific-popup.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/form-validator.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/contact-form-script.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/meanmenu.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/config.js' %}"></script>
 
         {% block extra_js %}
