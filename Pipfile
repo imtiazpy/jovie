@@ -13,6 +13,7 @@ psycopg2-binary = "*"
 wagtail-django-recaptcha = "*"
 django-storages = "*"
 boto3 = "*"
+django-widget-tweaks = "*"
 
 [dev-packages]
 

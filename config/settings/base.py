@@ -54,12 +54,14 @@ LOCAL_APPS = [
     "search",
     "streams",
     "menus",
+    "contact",
 ]
 
 THIRD_PARTY_APPS = [
     "django_recaptcha",
     "wagtailcaptcha",
     "storages",
+    "widget_tweaks",
 ]
 
 INSTALLED_APPS += LOCAL_APPS + THIRD_PARTY_APPS
