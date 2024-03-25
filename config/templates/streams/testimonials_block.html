@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="section-title text-center">
+    <h2>{{ self.title }}</h2>
+    <p>{{ self.subtitle }}</p>
+  </div>
+
+  <div class="row">
+    <div class="testimonial-slider-two owl-carousel owl-theme">
+      {% for testimonial in self.testimonials %}
+      <div class="testimonial-items">
+        <div class="testimonial-text">
+          <i class='flaticon-left-quotes-sign'></i>
+          <p>{{ testimonial.testimonial }}</p>
+        </div>
+
+        <div class="testimonial-info-text">
+          <h3>{{ testimonial.client_name }}</h3>
+          <p>{{ testimonial.designation }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

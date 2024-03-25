@@ -1,4 +1,5 @@
 from wagtail import blocks
+from wagtail.images.blocks import ImageChooserBlock
 
 
 class LinkStructValue(blocks.StructValue):
@@ -27,7 +28,7 @@ class ButtonBlock(blocks.StructBlock):
 
 class WhyUsCard(blocks.StructBlock):
     """Card for Why Us section"""
-    icon_class = blocks.CharBlock(label="Icon Class Name", max_length=100, required=False, help_text="ex: flaticon-resume")
+    icon_class = blocks.CharBlock(label="Flat Icon Class Name", max_length=100, required=False, help_text="ex: flaticon-resume")
     title = blocks.CharBlock(label="Title", max_length=100, required=False)
     content = blocks.TextBlock(required=False, help_text="Content of the card")
 
@@ -42,3 +43,58 @@ class WhyUsSectionBlock(blocks.StructBlock):
         template = "streams/why_us_block.html"
         icon = "check"
         label = "Why Us"
+
+
+class WayToUseItem(blocks.StructBlock):
+    flat_icon_class = blocks.CharBlock(label="Flat Icon Class Name", max_length=100, required=False, help_text="ex: flaticon-website")
+    title = blocks.CharBlock(label="Title", max_length=200, required=False)
+    content = blocks.TextBlock(label="Content", max_length=400, required=False)
+
+class WayToUseBlock(blocks.StructBlock):
+    heading = blocks.CharBlock(label="Heading", max_length=200, required=False)
+    items = blocks.ListBlock(WayToUseItem(required=False))
+
+    class Meta:
+        template = "streams/way_to_use_block.html"
+        icon = "info-circle"
+        label = "Way To Use"
+
+
+
+class FlexSectionBlock(blocks.StructBlock):
+    """
+    block for a flex section with text and image side by side, 
+    image position can be changed from left to right and vice versa.
+    """
+    title = blocks.CharBlock(label="Title", max_length=200, required=False)
+    content = blocks.TextBlock(label="Content", max_length=2000, required=False)
+    image = ImageChooserBlock(required=False)
+    image_position = blocks.ChoiceBlock(choices=[('left', 'Left'), ('right', 'Right')], required=False, default='right', label="Image Position")
+    link_url = blocks.URLBlock(label="external URL", required=False)
+    link_page = blocks.PageChooserBlock(required=False)
+    btn_label = blocks.CharBlock(label="Label", max_length=20, required=False)
+
+    class Meta:
+        template = "streams/flex_section_block.html"
+        icon = "folder"
+        label = "Flex Section"
+        value_class = LinkStructValue
+
+
+
+
+class TestimonialInfo(blocks.StructBlock):
+    testimonial = blocks.TextBlock(label="Testimonial", max_length=2000, required=False)
+    client_name = blocks.CharBlock(label="Client Name", max_length=100, required=False)
+    designation = blocks.CharBlock(label="Designation", max_length=100, required=False)
+
+class TestimonialsBlock(blocks.StructBlock):
+    """Block for showing client testimonials"""
+    title = blocks.CharBlock(label="Title", max_length=200, required=False)
+    subtitle = blocks.CharBlock(label="Subtitle", max_length=400, required=False)
+    testimonials = blocks.ListBlock(TestimonialInfo(required=False))
+
+    class Meta:
+        template = "streams/testimonials_block.html"
+        icon = "info"
+        label = "Testimonials"

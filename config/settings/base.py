@@ -55,6 +55,7 @@ LOCAL_APPS = [
     "streams",
     "menus",
     "contact",
+    "about",
 ]
 
 THIRD_PARTY_APPS = [
