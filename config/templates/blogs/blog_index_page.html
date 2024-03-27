@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block content %}
+<!-- Page Title Start -->
+<section class="page-title title-bg21">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <h2>{{ self.title }}</h2>
+      <ul>
+        <li>
+          {% with parent_page=self.get_parent %}
+          {% if parent_page %}
+          <a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
+          {% endif %}
+          {% endwith %}
+        </li>
+        <li>{{ self.title }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</section>
+<!-- Page Title End -->
+
+<!-- Blog Section Start -->
+<section class="blog-section blog-style-two pt-100 pb-70">
+  <div class="container">
+    <div class="section-title text-center">
+      <h2>{{ self.heading }}</h2>
+      <p>{{ self.subheading }}</p>
+    </div>
+
+    <div class="row">
+      {% for blog in blogs %}
+      {% image blog.banner_image fill-510x400 as banner %}
+      <div class="col-lg-4 col-sm-6">
+        <div class="blog-card">
+          <div class="blog-img">
+            <a href="{{ blog.url }}">
+              <img src="{{ banner.url }}" alt="{{ banner.alt }}">
+            </a>
+          </div>
+          <div class="blog-text">
+            <ul>
+              <li>
+                <i class='bx bxs-user'></i>
+                {{ blog.author }}
+              </li>
+              <li>
+                <i class='bx bx-calendar'></i>
+                {{ blog.created_at }}
+              </li>
+            </ul>
+
+            <h3>
+              <a href="{{ blog.url }}">
+                {{ blog.headline }}
+              </a>
+            </h3>
+            <p>{{ blog.content|slice:"100"|richtext }}</p>
+
+            <a href="{{ blog.url }}" class="blog-btn">
+              Read More
+              <i class='bx bx-plus bx-spin'></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        {% if blogs.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">
+            <i class='bx bx-chevrons-left bx-fade-left'></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ blogs.previous_page_number }}">{{ blogs.previous_page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <span class="page-link" tabindex="-1" aria-disabled="true">
+            <i class='bx bx-chevrons-left bx-fade-left'></i>
+          </span>
+        </li>
+        {% endif %}
+
+        {% for page_num in blogs.paginator.page_range %}
+        <li class="page-item {% if blogs.number == page_num %}active{% endif %}">
+          <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+        </li>
+        {% endfor %}
+
+        {% if blogs.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ blogs.next_page_number }}">
+            <i class='bx bx-chevrons-right bx-fade-right'></i>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <span class="page-link" tabindex="-1" aria-disabled="true">
+            <i class='bx bx-chevrons-right bx-fade-right'></i>
+          </span>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</section>
+<!-- Blog Section End -->
+{% endblock content %}

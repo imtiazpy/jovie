@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static widget_tweaks wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block content %}
+
+<!-- Page Title Start -->
+<section class="page-title title-bg22">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <h2>{{ self.title }}</h2>
+      <ul>
+        <li>
+          {% with parent_page=self.get_parent %}
+          {% if parent_page %}
+          <a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
+          {% endif %}
+          {% endwith %}
+        </li>
+        <li>{{ self.title }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</section>
+<!-- Page Title End -->
+
+<!-- Blog Details Section Start -->
+<section class="blog-details-area ptb-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+
+        <div class="blog-widget">
+          <h3>Popular Post</h3>
+          {% for popular_blog in popular_blogs %}
+          {% image popular_blog.banner_image fill-80x80 as banner %}
+          <article class="popular-post">
+            <a href="{{ popular_blog.url }}" class="blog-thumb">
+              <img src="{{ banner.url }}" alt="{{ banner.alt }}">
+            </a>
+
+            <div class="info">
+              <time datetime="{{ popular_blog.created_at }}">{{ popular_blog.created_at }}</time>
+              <h4>
+                <a href="{{ popular_blog.url }}">{{ popular_blog.headline }}</a>
+              </h4>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+
+      </div>
+
+      <div class="col-lg-8">
+        <div class="blog-dedails-text">
+          <div class="blog-details-img">
+            {% image self.banner_image fill-616x405 as banner_img %}
+            <img src="{{ banner_img.url }}" alt="{{ banner_img.alt }}">
+          </div>
+
+          <div class="blog-meta">
+            <ul>
+              <li>
+                <i class='bx bxs-user'></i>
+                {{ self.author }}
+              </li>
+              <li>
+                <i class='bx bx-calendar'></i>
+                {{ self.created_at }}
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="post-title">{{ self.headline }}</h3>
+
+          <div>{{ self.content|richtext }}</div>
+
+          <form class="comment-form" method="POST" action="{% pageurl self %}">
+            {% csrf_token %}
+            <h3>Leave a Reply</h3>
+
+            <div class="row">
+              {% for field in form %}
+                <div class="{% if field.label == 'Comment' %}col-md-12{% else %}col-md-6{% endif %}">
+                  <div class="form-group">
+                    {% if not forloop.last %}
+                    {{ field.label }}
+                    {{ field.field_type }}
+                    {{ field|add_class:'form-control' }}
+                    {% endif %}
+                  </div>
+                </div>
+                {% if forloop.last %}
+                  <div class="col-lg-12 col-md-12 text-center mb-2">{{ field }}</div>
+                  {% if error_msg %}
+                    <span class="text-danger">{{ error_msg }}</span>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              
+            </div>
+
+            <button type="submit" class="comment-btn">
+              Post a Comment
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Blog Details Section End -->
+
+{% endblock content %}
