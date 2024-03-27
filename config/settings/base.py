@@ -57,6 +57,7 @@ LOCAL_APPS = [
     "contact",
     "about",
     "blogs",
+    "impressum",
 ]
 
 THIRD_PARTY_APPS = [

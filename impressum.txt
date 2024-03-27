@@ -1,0 +1,29 @@
+Name and Address: Full legal name of the company, including any legal form (e.g., GmbH for a limited liability company) and the physical address of the company's headquarters or main office.
+
+Contact Information: Provide contact details such as email address and telephone number where the company can be reached.
+
+Representative: If applicable, include the name and position of the authorized representative of the company.
+
+Commercial Register Information: If the company is registered in the commercial register (Handelsregister), include the register number, court of registration, and any other relevant registration details.
+
+VAT Identification Number (VATIN): If the company is subject to VAT, include its VAT identification number.
+
+Legal Form and Share Capital: For companies with share capital (e.g., GmbH), disclose the share capital amount.
+
+Managing Directors or Board Members: List the names of managing directors or members of the board (if applicable).
+
+Professional Association Memberships: If the company is a member of any professional associations or chambers, provide details.
+
+Supervisory Authority: If the company is subject to official supervision, provide information about the supervisory authority.
+
+Disclaimer: Include a disclaimer stating that the website content is created with care but the company cannot guarantee the accuracy, completeness, or timeliness of the information provided.
+
+Copyright Information: Specify the copyright ownership of the website content, including text, images, and other media.
+
+Data Protection Officer: If applicable, provide information about the company's data protection officer.
+
+Hosting Provider Information: Include the name and address of the hosting provider for the website.
+
+Online Dispute Resolution (ODR): Provide a link to the European Commission's online dispute resolution platform (if applicable).
+
+Applicable Law: Mention the applicable law governing the website and any disputes that may arise.

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Page Title Start -->
+<section class="page-title title-bg19">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <h2>{{ self.title }}</h2>
+            <ul>
+                <li>
+                    {% with parent_page=self.get_parent %}
+                    {% if parent_page %}
+                    <a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
+                    {% endif %}
+                    {% endwith %}
+                </li>
+                <li>{{ self.title }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</section>
+<!-- Page Title End -->
+
+<!-- Impressum Section Start -->
+<div class="terms-section pt-100 pb-100">
+    <div class="container">
+        <div class="terms-text">
+            <div class="d-flex flex-wrap align-items-start justify-content-between mb-4">
+                <h2>Jovie Impressum</h2>
+
+                <div class="language-switch">
+                    <select class="text-black" id="language-select" onchange="changeLanguage(this.value)">
+                        {% if lang == 'de' %}
+                        <option value="en">English</option>
+                        <option value="de" selected>German</option>
+                        {% else %}
+                        <option value="en" selected>English</option>
+                        <option value="de">German</option>
+                        {% endif %}
+                    </select>
+                </div>
+            </div>
+
+            {% if lang == 'de' %}
+            {{ self.german_content|richtext }}
+            {% else %}
+            {{ self.english_content|richtext }}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- Impressum Section End -->
+
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    function changeLanguage(lang) {
+        const currentUrl = window.location.href;
+        const url = new URL(currentUrl);
+        url.searchParams.set('lang', lang);
+        window.location.href = url.toString();
+    }
+</script>
+{% endblock %}
