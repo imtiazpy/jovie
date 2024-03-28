@@ -97,7 +97,7 @@
         {% csrf_token %}
         <div class="row">
           {% for field in form.visible_fields %}
-          <div class="col-md-6">
+          <div class="{% if field.label == 'Message' %}col-md-12{% else %}col-md-6{% endif %}">
             <div class="form-group">
               {% if not forloop.last %}
               {{field.label}}
