@@ -111,8 +111,14 @@
           <div class="help-block with-errors"></div>
           {% endif %}
           {% endfor %}
-          {% if error_msg %}
-          <span>{{ error_msg }}</span>
+          {% if form.errors %}
+            <div class="mt-4">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <span class="alert alert-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endfor %}
+            </div>
           {% endif %}
           <div class="col-lg-12 col-md-12 text-center">
             <button type="submit" class="default-btn contact-btn">

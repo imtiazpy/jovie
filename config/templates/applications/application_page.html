@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static widget_tweaks wagtailcore_tags %}
+
+{% block extra_css %}
+{% endblock %}
+
+
+{% block content %}
+<!-- Page Title Start -->
+<section class="page-title title-bg3">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <h2>{{ self.title }}</h2>
+      <ul>
+        <li>
+          {% with parent_page=self.get_parent %}
+          {% if parent_page %}
+          <a href="{{ parent_page.url }}">{{ parent_page.title }}</a>
+          {% endif %}
+          {% endwith %}
+        </li>
+        <li>{{ self.title }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</section>
+<!-- Page Title End -->
+
+<!-- Post Job Section Start -->
+<div class="job-post ptb-100">
+  <div class="container">
+    <form class="job-post-from application-form" action="{% pageurl self %}" method="POST"
+      enctype="multipart/form-data">
+      {% csrf_token %}
+      <h2>Please add your resume</h2>
+      <div class="row">
+        {% for field in form.visible_fields %}
+        <div class="col-md-6">
+          <div class="form-group">
+            {% if not forloop.last %}
+            {{field.label}}
+            {{ field|add_class:'form-control' }}
+            <div class="help-block with-errors"></div>
+            {% endif %}
+          </div>
+        </div>
+        {% if forloop.last %}
+        <div class="col-lg-12 col-md-12 text-center mb-2">{{ field }}</div>
+        <div class="help-block with-errors"></div>
+        {% endif %}
+        {% endfor %}
+
+        {% if form.errors %}
+          <div class="mt-4">
+            {% for field, errors in form.errors.items %}
+              {% for error in errors %}
+                <span class="alert alert-danger">{{ error }}</span>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="col-md-12 text-center">
+          <button type="submit" class="post-btn">
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Post Job Section End -->
+{% endblock content %}
