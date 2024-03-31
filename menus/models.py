@@ -59,9 +59,10 @@ class Menu(ClusterableModel):
 
     MENU_TYPES = (
         ('main', 'Main Menu'),
-        ('footer', 'Footer Menu'),
+        ('for_candidate', 'For Candidate'),
+        ('quick_links', 'Quick Links')
     )
-    menu_type = models.CharField(max_length=10, choices=MENU_TYPES, default='main', help_text="Select the type of menu")
+    menu_type = models.CharField(max_length=50, choices=MENU_TYPES, default='main', help_text="Select the type of menu")
 
     panels = [
         FieldPanel("menu_type"),
