@@ -1,5 +1,9 @@
+from django import forms
 from wagtail import blocks
+from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
+
+from streams.models import Category
 
 
 class LinkStructValue(blocks.StructValue):
@@ -98,3 +102,15 @@ class TestimonialsBlock(blocks.StructBlock):
         template = "streams/testimonials_block.html"
         icon = "info"
         label = "Testimonials"
+
+
+
+class CategorySectionBlock(blocks.StructBlock):
+    heading = blocks.CharBlock(label="Heading", max_length=400, required=False)
+    sub_heading = blocks.CharBlock(label="Sub heading", max_length=500, required=False)
+    categories = blocks.ListBlock(SnippetChooserBlock(Category))
+
+    class Meta:
+        template = "streams/category_section_block.html"
+        icon = "tick-inverse"
+        label = "Categories"

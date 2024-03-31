@@ -4,7 +4,7 @@ from wagtail.models import Page
 from wagtail.fields import StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 
-from streams.blocks import ButtonBlock, WhyUsSectionBlock
+from streams.blocks import ButtonBlock, WhyUsSectionBlock, CategorySectionBlock
 
 class HomePage(Page):
     parent_page_types = [
@@ -44,8 +44,14 @@ class HomePage(Page):
         blank=True
     )
 
-    
-    
+    job_categories = StreamField(
+        [('job_category', CategorySectionBlock())],
+        block_counts = {
+            'job_category': {'max_num': 1}
+        },
+        null=True,
+        blank=True
+    )
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
@@ -57,9 +63,11 @@ class HomePage(Page):
             FieldPanel("buttons"),
         ], heading="Banner Section"),
         FieldPanel("why_us"),
-
+        FieldPanel('job_categories'),
     ]
 
+    class Meta:
+        verbose_name_plural = 'Home pages'
 
 
 

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="section-title text-center">
+    <h2>{{ self.heading }}</h2>
+    <p>{{ self.sub_heading }}</p>
+  </div>
+
+  <div class="row">
+    {% for category in self.categories %}
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <a href="#">
+        <div class="category-card">
+          <i class='{{ category.icon }}'></i>
+          <h3>{{ category.title }}</h3>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
