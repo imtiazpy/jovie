@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    "wagtail.contrib.settings",
     "modelcluster",
     "taggit",
     "django.contrib.admin",
@@ -59,6 +60,7 @@ LOCAL_APPS = [
     "blogs",
     "impressum",
     "applications",
+    "site_settings",
 ]
 
 THIRD_PARTY_APPS = [
@@ -100,6 +102,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },

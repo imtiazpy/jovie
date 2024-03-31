@@ -76,9 +76,11 @@
 
         <!-- Footer Section Start -->
         {% include 'includes/_footer.html' %}
+        {% if settings.site_settings.CompanySettings.copyright %}
         <div class="copyright-text text-center">
-            <p>© Jovie is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBootstrp</a></p>
+            <p>{{ settings.site_settings.CompanySettings.copyright }}</p>
         </div>
+        {% endif %}
         <!-- Footer Section End -->
 
         <!-- Back To Top Start -->
