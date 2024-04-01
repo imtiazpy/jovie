@@ -1,11 +1,26 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Page not found{% endblock %}
 
 {% block body_class %}template-404{% endblock %}
 
 {% block content %}
-<h1>Page not found</h1>
 
-<h2>Sorry, this page could not be found.</h2>
+<!-- Error Section Start -->
+<div class="error-section ptb-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="error-img">
+          <img src="{% static 'img/404.png' %}" alt="error image">
+          <div class="theme-btn text-center">
+            <a href="/" class="default-btn">Go To Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Section End -->
 {% endblock %}
